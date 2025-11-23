@@ -511,11 +511,11 @@
             margin-bottom: 50px;
         }
 
-        /* Pricing Card with 3D Hover */
+        /* Pricing Card with Capsule Shape */
         .pricing-card {
             background: var(--glass-bg);
             backdrop-filter: blur(25px);
-            border-radius: 18px;
+            border-radius: 50px; /* Capsule shape */
             border: 1px solid var(--glass-border);
             padding: 30px;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -526,7 +526,6 @@
             text-align: center;
             opacity: 0;
             transform: translateY(30px);
-            perspective: 1000px;
         }
 
         .pricing-card::before {
@@ -540,12 +539,12 @@
             background-size: 400% 400%;
             animation: gradientAnimation 8s ease infinite;
             z-index: -1;
-            border-radius: 20px;
+            border-radius: 52px; /* Match capsule shape */
             opacity: 0.6;
         }
 
         .pricing-card:hover {
-            transform: translateY(-8px) rotateX(5deg) rotateY(5deg);
+            transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(124, 58, 237, 0.3);
             border-color: rgba(255, 255, 255, 0.25);
         }
@@ -556,7 +555,7 @@
         }
 
         .pricing-card.popular:hover {
-            transform: scale(1.05) translateY(-8px) rotateX(5deg);
+            transform: scale(1.05) translateY(-8px);
         }
 
         /* Badge System */
@@ -591,11 +590,12 @@
             100% { transform: scale(1); }
         }
 
+        /* Rounded Pricing Icons */
         .pricing-icon {
             width: 70px;
             height: 70px;
             background: var(--primary-gradient);
-            border-radius: 15px;
+            border-radius: 50%; /* Changed to circle */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -664,11 +664,11 @@
             font-size: 16px;
         }
 
-        /* Buttons */
+        /* Buttons - Capsule Shape */
         .btn {
             padding: 14px 28px;
             border: none;
-            border-radius: 12px;
+            border-radius: 50px; /* Capsule shape */
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
@@ -771,11 +771,11 @@
             flex-wrap: wrap;
         }
 
-        /* FAQ Section */
+        /* FAQ Section - Capsule Shape */
         .faq-section {
             background: var(--glass-bg);
             backdrop-filter: blur(25px);
-            border-radius: 25px;
+            border-radius: 50px; /* Capsule shape */
             border: 1px solid var(--glass-border);
             padding: 35px;
             margin: 50px auto 0;
@@ -793,7 +793,7 @@
         .faq-item {
             margin-bottom: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
+            border-radius: 25px; /* Capsule shape */
             overflow: hidden;
         }
 
@@ -805,6 +805,7 @@
             justify-content: space-between;
             align-items: center;
             transition: all 0.3s ease;
+            border-radius: 25px; /* Capsule shape */
         }
 
         .faq-question:hover {
@@ -838,7 +839,7 @@
             transform: rotate(180deg);
         }
 
-        /* Footer Payment Section */
+        /* Footer Payment Section - Capsule Shape */
         .footer-section {
             position: relative;
             width: calc(100% - 80px);
@@ -846,7 +847,7 @@
             background: var(--glass-bg);
             backdrop-filter: blur(25px);
             border: 1px solid var(--glass-border);
-            border-radius: 50px;
+            border-radius: 50px; /* Capsule shape */
             padding: 15px 20px;
             margin: 30px auto 20px;
             overflow: hidden;
@@ -869,7 +870,7 @@
 
         .footer-section .payment-method {
             background: rgba(255, 255, 255, 0.15);
-            border-radius: 12px;
+            border-radius: 25px; /* Capsule shape */
             padding: 10px 15px;
             display: flex;
             align-items: center;
@@ -929,7 +930,7 @@
             text-align: center;
         }
 
-        /* Payment Security Badges */
+        /* Payment Security Badges - Capsule Shape */
         .security-badges {
             display: flex;
             justify-content: center;
@@ -941,7 +942,7 @@
         .security-badge {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
+            border-radius: 25px; /* Capsule shape */
             padding: 10px 15px;
             display: flex;
             align-items: center;
@@ -1792,6 +1793,17 @@
             document.getElementById('paymentRocket2').textContent = t.paymentRocket;
             document.getElementById('paymentPathao2').textContent = t.paymentPathao;
             
+            // Update price amounts to Bengali when language is Bengali
+            if (lang === 'bn') {
+                document.getElementById('basicPrice').textContent = '৳১৪৯';
+                document.getElementById('standardPrice').textContent = '৳১৯৯';
+                document.getElementById('premiumPrice').textContent = '৳২৪৯';
+            } else {
+                document.getElementById('basicPrice').textContent = '৳149';
+                document.getElementById('standardPrice').textContent = '৳199';
+                document.getElementById('premiumPrice').textContent = '৳249';
+            }
+            
             // Update page title
             document.title = t.pageTitle;
         }
@@ -1821,7 +1833,7 @@
             document.getElementById('loadingOverlay').classList.remove('active');
         }
 
-        // Select Plan
+        // Select Plan - Faster loading
         function selectPlan(plan) {
             const planName = isEnglish ? 
                 (plan === 'basic' ? 'Basic' : plan === 'standard' ? 'Standard' : 'Premium') :
@@ -1837,11 +1849,11 @@
             // Save selected plan
             localStorage.setItem('selectedPlan', plan);
             
-            // Show loading and redirect to signup
+            // Faster loading - reduced from 1500ms to 500ms
             showLoading();
             setTimeout(() => {
                 window.location.href = 'signup.html';
-            }, 1500);
+            }, 500);
         }
 
         // Update Toggle Visual State
