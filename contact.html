@@ -635,13 +635,14 @@
             text-align: center;
         }
 
+        /* Contact Info Items - Capsule Shape */
         .info-item {
             display: flex;
             align-items: center;
             gap: 15px;
             margin-bottom: 20px;
-            padding: 15px;
-            border-radius: 12px;
+            padding: 15px 20px;
+            border-radius: 50px; /* Capsule shape */
             background: rgba(255, 255, 255, 0.08);
             transition: all 0.3s ease;
             cursor: pointer;
@@ -663,10 +664,15 @@
             font-size: 18px;
             color: white;
             transition: all 0.3s ease;
+            flex-shrink: 0; /* Prevent icon from shrinking */
         }
 
         .info-item:hover .info-icon {
             transform: scale(1.1);
+        }
+
+        .info-content {
+            flex: 1;
         }
 
         .info-content h4 {
