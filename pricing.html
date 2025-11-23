@@ -1,0 +1,2045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Android Chrome Theme Color -->
+    <meta name="theme-color" content="#7C3AED" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#222831" media="(prefers-color-scheme: dark)">
+    
+    <title>PocketHisab - Pricing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Safari Compatibility */
+        * {
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* Gradient text fix */
+        .page-title,
+        .pricing-title,
+        .pricing-price {
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Backdrop filter fix */
+        .navbar,
+        .pricing-card,
+        .summary-section,
+        .faq-section {
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        /* Animation fixes */
+        * {
+            -webkit-transform: translateZ(0);
+            -webkit-perspective: 1000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* CSS Variables for Theming - MATCHING LOGIN PAGE COLORS */
+        :root {
+            /* Light Theme Colors - Purple */
+            --primary-gradient: linear-gradient(135deg, #7C3AED, #2563EB);
+            --secondary-gradient: linear-gradient(135deg, #2563EB, #0D9488);
+            --background-gradient: linear-gradient(45deg, #7C3AED, #2563EB, #0D9488, #7C3AED);
+            --glass-bg: rgba(255, 255, 255, 0.12);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --glass-shadow: 0 25px 50px rgba(124, 58, 237, 0.2);
+            --text-primary: rgba(255, 255, 255, 0.95);
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --nav-bg: rgba(255, 255, 255, 0.15);
+            --input-bg: rgba(255, 255, 255, 0.1);
+            --input-focus: rgba(255, 255, 255, 0.15);
+            --success-bg: rgba(34, 197, 94, 0.25);
+            --error-bg: rgba(239, 68, 68, 0.25);
+            --info-bg: rgba(59, 130, 246, 0.25);
+            --nav-text: rgba(255, 255, 255, 0.9);
+            --nav-text-hover: #FFFFFF;
+            --nav-text-active: #FDE68A;
+        }
+
+        /* Dark Theme Colors - MATCHING LOGIN PAGE */
+        [data-theme="dark"] {
+            --primary-gradient: linear-gradient(135deg, #8B5CF6, #3B82F6);
+            --secondary-gradient: linear-gradient(135deg, #3B82F6, #0D9488);
+            --background-gradient: linear-gradient(45deg, #222831, #222831, #3B0270, #222831);
+            --glass-bg: rgba(34, 40, 49, 0.35);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-shadow: 0 25px 50px rgba(59, 2, 112, 0.3);
+            --text-primary: rgba(255, 255, 255, 0.95);
+            --text-secondary: rgba(255, 255, 255, 0.75);
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --nav-bg: rgba(34, 40, 49, 0.4);
+            --input-bg: rgba(255, 255, 255, 0.08);
+            --input-focus: rgba(255, 255, 255, 0.12);
+            --success-bg: rgba(34, 197, 94, 0.3);
+            --error-bg: rgba(239, 68, 68, 0.3);
+            --info-bg: rgba(59, 130, 246, 0.3);
+            --nav-text: rgba(255, 255, 255, 0.9);
+            --nav-text-hover: #FFFFFF;
+            --nav-text-active: #FDE68A;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--background-gradient);
+            background-size: 400% 400%;
+            animation: gradientAnimation 25s ease infinite;
+            color: #333;
+            overflow-x: hidden;
+            min-height: 100vh;
+            min-height: 100svh;
+            min-height: 100dvh;
+            padding-bottom: env(safe-area-inset-bottom);
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: inherit;
+            background-attachment: fixed;
+            z-index: -2;
+            pointer-events: none;
+            animation: inherit;
+            transform: translateZ(0);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background: var(--background-gradient);
+            background-size: 400% 400%;
+            min-height: 100%;
+        }
+
+        /* Background Animation */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 50%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Accounting Animation Background - ADDED FROM LOGIN PAGE */
+        .accounting-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .currency-symbol {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.3);
+            animation: floatCurrency 15s linear infinite;
+            user-select: none;
+        }
+
+        .currency-symbol.taka {
+            font-weight: bold;
+        }
+
+        @keyframes floatCurrency {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .calculator-icon {
+            position: absolute;
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.25);
+            animation: floatCalculator 20s linear infinite;
+        }
+
+        @keyframes floatCalculator {
+            0% {
+                transform: translateX(-100px) translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateX(100vw) translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .chart-icon {
+            position: absolute;
+            font-size: 22px;
+            color: rgba(255, 255, 255, 0.2);
+            animation: floatChart 25s linear infinite;
+        }
+
+        @keyframes floatChart {
+            0% {
+                transform: translateX(100vw) translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.5;
+            }
+            85% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateX(-100px) translateY(-100px) rotate(-360deg);
+                opacity: 0;
+            }
+        }
+
+        @supports (padding: max(0px)) {
+            body {
+                padding-bottom: max(20px, env(safe-area-inset-bottom));
+            }
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: max(26px, calc(26px + env(safe-area-inset-bottom)));
+            right: 26px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1400;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animated Gradient Text */
+        .animated-gradient-text {
+            background: linear-gradient(120deg, #ffffff, #C4B5FD, #93C5FD, #ffffff);
+            background-size: 240% 240%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 10px 30px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .logo-circle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(124, 58, 237, 0.4);
+        }
+
+        .logo-circle i {
+            color: white;
+            font-size: 18px;
+        }
+
+        .nav-brand {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--nav-text), #C4B5FD);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--nav-text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-links a:hover::before {
+            left: 100%;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            color: var(--nav-text-hover);
+        }
+
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.25);
+            color: var(--nav-text-active);
+            font-weight: 700;
+        }
+
+        /* Toggle Controls */
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Capsule Toggle Styles */
+        .capsule-toggle {
+            width: 70px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 2px;
+            cursor: pointer;
+            position: relative;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .capsule-toggle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .capsule-toggle:hover::before {
+            left: 100%;
+        }
+
+        .capsule-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .toggle-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .toggle-thumb {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--nav-text);
+            transition: all 0.3s ease;
+            z-index: 2;
+            border-radius: 18px;
+        }
+
+        .toggle-thumb.active {
+            color: white;
+            background: var(--primary-gradient);
+        }
+
+        .toggle-icon {
+            font-size: 12px;
+        }
+
+        /* Main Content */
+        .main-content {
+            min-height: 100vh;
+            padding: 100px 20px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ffffff, #C4B5FD);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Pricing Grid */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        /* Pricing Card with 3D Hover */
+        .pricing-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border-radius: 18px;
+            border: 1px solid var(--glass-border);
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: var(--glass-shadow);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            perspective: 1000px;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #7C3AED, #2563EB, #0D9488, #7C3AED);
+            background-size: 400% 400%;
+            animation: gradientAnimation 8s ease infinite;
+            z-index: -1;
+            border-radius: 20px;
+            opacity: 0.6;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.3);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .pricing-card.popular {
+            transform: scale(1.05);
+            border: 2px solid #C4B5FD;
+        }
+
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-8px) rotateX(5deg);
+        }
+
+        /* Badge System */
+        .popular-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(45deg, #C4B5FD, #A78BFA);
+            color: #333;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            animation: pulse 2s infinite;
+        }
+
+        .best-value-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(45deg, #7C3AED, #6D28D9);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pricing-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary-gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover .pricing-icon {
+            transform: scale(1.08) rotate(5deg);
+            box-shadow: 0 6px 18px rgba(124, 58, 237, 0.35);
+        }
+
+        .pricing-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ffffff, #C4B5FD);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            background: linear-gradient(45deg, #C4B5FD, #A78BFA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pricing-period {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-features li:hover {
+            color: #FDE68A;
+            transform: translateX(5px);
+        }
+
+        .pricing-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #FDE68A;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.25);
+            color: var(--text-primary);
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-2px);
+        }
+
+        /* Summary Section - Capsule Shape */
+        .summary-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            padding: 35px;
+            margin: 50px auto 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            max-width: 1100px;
+        }
+
+        .summary-section::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #7C3AED, #2563EB, #0D9488, #7C3AED);
+            background-size: 400% 400%;
+            animation: gradientAnimation 8s ease infinite;
+            z-index: -1;
+            border-radius: 52px;
+            opacity: 0.6;
+        }
+
+        .summary-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 18px;
+        }
+
+        .summary-text {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 1rem;
+            max-width: 800px;
+            margin: 0 auto 25px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border-radius: 25px;
+            border: 1px solid var(--glass-border);
+            padding: 35px;
+            margin: 50px auto 0;
+            max-width: 1100px;
+        }
+
+        .faq-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .faq-question h3 {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Footer Payment Section */
+        .footer-section {
+            position: relative;
+            width: calc(100% - 80px);
+            max-width: 1100px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 15px 20px;
+            margin: 30px auto 20px;
+            overflow: hidden;
+        }
+
+        .scrolling-payment-methods {
+            display: flex;
+            animation: scrollPayment 18s linear infinite;
+            gap: 20px;
+        }
+
+        @keyframes scrollPayment {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .footer-section .payment-method {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            min-width: 120px;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Shining Animation on Hover */
+        .footer-section .payment-method::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .footer-section .payment-method:hover::before {
+            left: 100%;
+        }
+
+        .footer-section .payment-method:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .footer-section .payment-icon {
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .footer-section .payment-name {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 12px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .footer-section .payment-note {
+            color: var(--text-secondary);
+            font-size: 12px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* Payment Security Badges */
+        .security-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .security-badge {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Message Box */
+        .message {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 500;
+            z-index: 1001;
+            backdrop-filter: blur(20px);
+            animation: slideIn 0.3s ease;
+            display: none;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .message.success {
+            background: var(--success-bg);
+            color: #86efac;
+        }
+
+        .message.info {
+            background: var(--info-bg);
+            color: #93c5fd;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading-spinner {
+            width: 45px;
+            height: 45px;
+            border: 2.5px solid transparent;
+            border-top: 2.5px solid #7C3AED;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Confetti Container */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1003;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #C4B5FD;
+            opacity: 0;
+            animation: confettiFall 3s ease-in-out;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                opacity: 1;
+                transform: translateY(-100px) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 8px 20px;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .nav-left {
+                order: 1;
+                flex: 1;
+            }
+            
+            .nav-controls {
+                order: 2;
+                gap: 6px;
+            }
+            
+            .nav-center {
+                order: 3;
+                flex: 1 1 100%;
+                justify-content: center;
+                margin-top: 8px;
+            }
+            
+            .nav-links {
+                gap: 12px;
+            }
+            
+            .nav-links a {
+                font-size: 13px;
+                padding: 6px 12px;
+            }
+            
+            .capsule-toggle {
+                width: 65px;
+                height: 28px;
+            }
+            
+            .nav-brand {
+                font-size: 1.3rem;
+            }
+            
+            .logo-circle {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .logo-circle i {
+                font-size: 14px;
+            }
+            
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .main-content {
+                padding: 120px 15px 30px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 200px;
+                justify-content: center;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+            
+            .pricing-card.popular:hover {
+                transform: translateY(-8px);
+            }
+
+            /* Footer Responsive */
+            .footer-section {
+                width: calc(100% - 60px);
+                padding: 12px 15px;
+                border-radius: 40px;
+                margin: 40px auto 25px;
+            }
+            
+            .footer-section .payment-method {
+                min-width: 100px;
+                padding: 8px 12px;
+                gap: 6px;
+            }
+            
+            .footer-section .payment-icon {
+                font-size: 16px;
+                width: 20px;
+            }
+            
+            .footer-section .payment-name {
+                font-size: 11px;
+            }
+            
+            .footer-section .payment-note {
+                font-size: 11px;
+            }
+            
+            .scrolling-payment-methods {
+                gap: 15px;
+                animation: scrollPayment 16s linear infinite;
+            }
+
+            /* Summary Section Responsive */
+            .summary-section {
+                border-radius: 40px;
+                padding: 25px;
+                margin: 40px auto 0;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 42px;
+                height: 42px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 6px 15px;
+            }
+            
+            .nav-links {
+                gap: 8px;
+            }
+            
+            .nav-links a {
+                font-size: 12px;
+                padding: 5px 10px;
+            }
+            
+            .capsule-toggle {
+                width: 60px;
+                height: 26px;
+            }
+            
+            .toggle-icon {
+                font-size: 10px;
+            }
+            
+            .nav-brand {
+                font-size: 1.1rem;
+            }
+
+            /* Footer Responsive */
+            .footer-section {
+                width: calc(100% - 40px);
+                padding: 10px 12px;
+                border-radius: 35px;
+                margin: 30px auto 20px;
+            }
+            
+            .footer-section .payment-method {
+                min-width: 90px;
+                padding: 6px 10px;
+                gap: 5px;
+                flex-direction: column;
+            }
+            
+            .footer-section .payment-icon {
+                font-size: 14px;
+                width: 18px;
+            }
+            
+            .footer-section .payment-name {
+                font-size: 10px;
+            }
+            
+            .footer-section .payment-note {
+                font-size: 10px;
+                margin-top: 8px;
+            }
+            
+            .scrolling-payment-methods {
+                gap: 12px;
+                animation: scrollPayment 14s linear infinite;
+            }
+
+            /* Summary Section Responsive */
+            .summary-section {
+                border-radius: 35px;
+                padding: 20px;
+                margin: 30px auto 0;
+            }
+        }
+
+        /* Safari Mobile Bottom Bar Fix */
+        @supports (padding: max(0px)) {
+            body {
+                padding-bottom: max(20px, env(safe-area-inset-bottom));
+            }
+            
+            .main-content {
+                padding-bottom: max(50px, env(safe-area-inset-bottom));
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Accounting Animation Background - ADDED FROM LOGIN PAGE -->
+    <div class="accounting-animation" id="accountingAnimation"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Confetti Container -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <!-- Left Side: Logo + Brand Name -->
+        <div class="nav-left">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div class="nav-brand animated-gradient-text">PocketHisab</div>
+            </div>
+        </div>
+
+        <!-- Center: Navigation Links -->
+        <div class="nav-center">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="features.html">Features</a>
+                <a href="pricing.html" class="active">Pricing</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+
+        <!-- Right Side: Toggles -->
+        <div class="nav-controls">
+            <!-- Dark/Light Mode Toggle -->
+            <div class="capsule-toggle" id="darkModeToggle">
+                <div class="toggle-track">
+                    <div class="toggle-thumb">
+                        <span class="toggle-icon">☀️</span>
+                    </div>
+                    <div class="toggle-thumb">
+                        <span class="toggle-icon">🌙</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Language Toggle -->
+            <div class="capsule-toggle" id="languageToggle">
+                <div class="toggle-track">
+                    <div class="toggle-thumb">
+                        <span class="toggle-icon">EN</span>
+                    </div>
+                    <div class="toggle-thumb">
+                        <span class="toggle-icon">BN</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title animated-gradient-text" id="pageTitle">PocketHisab Pricing</h1>
+            <p class="page-subtitle" id="pageSubtitle">Choose the perfect plan for your personal accounting needs</p>
+        </div>
+
+        <!-- Pricing Grid -->
+        <div class="pricing-grid">
+            <!-- Basic Plan -->
+            <div class="pricing-card">
+                <div class="best-value-badge" id="bestStarterBadge">Best for Starters</div>
+                <div class="pricing-icon">💰</div>
+                <h3 class="pricing-title" id="basicTitle">Basic</h3>
+                <div class="pricing-price" id="basicPrice">৳149</div>
+                <div class="pricing-period" id="basicPeriod">per month</div>
+                <ul class="pricing-features">
+                    <li id="basicFeature1">📱 300 SMS per month</li>
+                    <li id="basicFeature2">📊 Basic Dashboard</li>
+                    <li id="basicFeature3">💳 Income/Expense Tracking</li>
+                    <li id="basicFeature4">📧 Email Support</li>
+                </ul>
+                <button class="btn btn-primary" onclick="selectPlan('basic')" id="basicBtn">Select Basic</button>
+            </div>
+
+            <!-- Standard Plan -->
+            <div class="pricing-card popular">
+                <div class="popular-badge" id="popularBadge">Most Popular</div>
+                <div class="pricing-icon">🚀</div>
+                <h3 class="pricing-title" id="standardTitle">Standard</h3>
+                <div class="pricing-price" id="standardPrice">৳199</div>
+                <div class="pricing-period" id="standardPeriod">per month</div>
+                <ul class="pricing-features">
+                    <li id="standardFeature1">📱 400 SMS per month</li>
+                    <li id="standardFeature2">📈 Advanced Dashboard</li>
+                    <li id="standardFeature3">📈 Investment Tracking</li>
+                    <li id="standardFeature4">⚡ Priority Support</li>
+                </ul>
+                <button class="btn btn-primary" onclick="selectPlan('standard')" id="standardBtn">Select Standard</button>
+            </div>
+
+            <!-- Premium Plan -->
+            <div class="pricing-card">
+                <div class="best-value-badge" id="ultimateFeaturesBadge">Ultimate Features</div>
+                <div class="pricing-icon">👑</div>
+                <h3 class="pricing-title" id="premiumTitle">Premium</h3>
+                <div class="pricing-price" id="premiumPrice">৳249</div>
+                <div class="pricing-period" id="premiumPeriod">per month</div>
+                <ul class="pricing-features">
+                    <li id="premiumFeature1">📱 500 SMS per month</li>
+                    <li id="premiumFeature2">🎯 Full Feature Access</li>
+                    <li id="premiumFeature3">📑 Contract Management</li>
+                    <li id="premiumFeature4">🕒 24/7 Support</li>
+                </ul>
+                <button class="btn btn-primary" onclick="selectPlan('premium')" id="premiumBtn">Select Premium</button>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2 class="faq-title" id="faqTitle">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3 id="faq1Q">What payment methods do you accept?</h3>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p id="faq1A">We accept all major Bangladeshi payment methods including bKash, Nagad, Rocket, Visa/MasterCard, and bank transfers.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3 id="faq2Q">Can I change my plan later?</h3>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p id="faq2A">Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3 id="faq3Q">Is there a free trial available?</h3>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p id="faq3A">We offer a 14-day free trial for all new users. No credit card required to start your trial.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3 id="faq4Q">How secure is my financial data?</h3>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p id="faq4A">We use bank-level encryption and security measures to protect your data. Your financial information is completely safe with us.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Section - Capsule Shape -->
+        <div class="summary-section">
+            <h2 class="summary-title" id="summaryTitle">Ready to Get Started?</h2>
+            <p class="summary-text" id="summaryText">
+                All plans include our core features with different SMS limits. Start with Basic and upgrade anytime. 
+                30-day money-back guarantee on all plans.
+            </p>
+            <div class="cta-buttons">
+                <a href="signup.html" class="btn btn-primary" id="createAccountBtn">
+                    📝 Create Account
+                </a>
+                <a href="index.html" class="btn btn-secondary" id="loginBtn">
+                    🔐 Login Now
+                </a>
+            </div>
+            
+            <!-- Security Badges -->
+            <div class="security-badges">
+                <div class="security-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Bank-Level Security</span>
+                </div>
+                <div class="security-badge">
+                    <i class="fas fa-lock"></i>
+                    <span>256-bit Encryption</span>
+                </div>
+                <div class="security-badge">
+                    <i class="fas fa-check-circle"></i>
+                    <span>PCI DSS Compliant</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Payment Section -->
+        <div class="footer-section">
+            <div class="scrolling-payment-methods">
+                <div class="payment-method">
+                    <div class="payment-icon">💰</div>
+                    <div class="payment-name" id="paymentBkash">bKash</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">📱</div>
+                    <div class="payment-name" id="paymentNagad">Nagad</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">🚀</div>
+                    <div class="payment-name" id="paymentRocket">Rocket</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">🛵</div>
+                    <div class="payment-name" id="paymentPathao">Pathao Pay</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-name" id="paymentCard">Visa/MasterCard</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">🏦</div>
+                    <div class="payment-name" id="paymentBank">Bank Transfer</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">📲</div>
+                    <div class="payment-name" id="paymentUpay">Upay</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">💸</div>
+                    <div class="payment-name" id="paymentAmarPay">AmarPay</div>
+                </div>
+                <!-- Duplicate for seamless scrolling -->
+                <div class="payment-method">
+                    <div class="payment-icon">💰</div>
+                    <div class="payment-name" id="paymentBkash2">bKash</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">📱</div>
+                    <div class="payment-name" id="paymentNagad2">Nagad</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">🚀</div>
+                    <div class="payment-name" id="paymentRocket2">Rocket</div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-icon">🛵</div>
+                    <div class="payment-name" id="paymentPathao2">Pathao Pay</div>
+                </div>
+            </div>
+            <p class="payment-note" id="paymentNote">All major Bangladeshi payment methods supported</p>
+        </div>
+    </div>
+
+    <script>
+        // Current states
+        let isDarkMode = false;
+        let isEnglish = true;
+
+        // Language texts
+        const translations = {
+            en: {
+                pageTitle: "PocketHisab Pricing",
+                pageSubtitle: "Choose the perfect plan for your personal accounting needs",
+                basicTitle: "Basic",
+                basicPeriod: "per month",
+                basicFeature1: "📱 300 SMS per month",
+                basicFeature2: "📊 Basic Dashboard",
+                basicFeature3: "💳 Income/Expense Tracking",
+                basicFeature4: "📧 Email Support",
+                basicBtn: "Select Basic",
+                standardTitle: "Standard",
+                standardPeriod: "per month",
+                standardFeature1: "📱 400 SMS per month",
+                standardFeature2: "📈 Advanced Dashboard",
+                standardFeature3: "📈 Investment Tracking",
+                standardFeature4: "⚡ Priority Support",
+                standardBtn: "Select Standard",
+                premiumTitle: "Premium",
+                premiumPeriod: "per month",
+                premiumFeature1: "📱 500 SMS per month",
+                premiumFeature2: "🎯 Full Feature Access",
+                premiumFeature3: "📑 Contract Management",
+                premiumFeature4: "🕒 24/7 Support",
+                premiumBtn: "Select Premium",
+                popularBadge: "Most Popular",
+                bestForStarters: "Best for Starters",
+                ultimateFeatures: "Ultimate Features",
+                summaryTitle: "Ready to Get Started?",
+                summaryText: "All plans include our core features with different SMS limits. Start with Basic and upgrade anytime. 30-day money-back guarantee on all plans.",
+                createAccountBtn: "📝 Create Account",
+                loginBtn: "🔐 Login Now",
+                paymentBkash: "bKash",
+                paymentNagad: "Nagad", 
+                paymentRocket: "Rocket",
+                paymentPathao: "Pathao Pay",
+                paymentCard: "Visa/MasterCard",
+                paymentBank: "Bank Transfer",
+                paymentUpay: "Upay",
+                paymentAmarPay: "AmarPay",
+                paymentNote: "All major Bangladeshi payment methods supported",
+                darkMode: "Dark mode activated",
+                lightMode: "Light mode activated",
+                englishSelected: "English language selected",
+                banglaSelected: "বাংলা ভাষা নির্বাচন করা হয়েছে",
+                planSelected: "Plan selected: ",
+                // FAQ translations (EN)
+                faqTitle: "Frequently Asked Questions",
+                faq1Q: "What payment methods do you accept?",
+                faq1A: "We accept all major Bangladeshi payment methods including bKash, Nagad, Rocket, Visa/MasterCard, and bank transfers.",
+                faq2Q: "Can I change my plan later?",
+                faq2A: "Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle.",
+                faq3Q: "Is there a free trial available?",
+                faq3A: "We offer a 14-day free trial for all new users. No credit card required to start your trial.",
+                faq4Q: "How secure is my financial data?",
+                faq4A: "We use bank-level encryption and security measures to protect your data. Your financial information is completely safe with us."
+            },
+            bn: {
+                pageTitle: "পকেটহিসাব মূল্য",
+                pageSubtitle: "আপনার ব্যক্তিগত অ্যাকাউন্টিং চাহিদার জন্য নিখুঁত প্ল্যান নির্বাচন করুন",
+                basicTitle: "বেসিক",
+                basicPeriod: "প্রতি মাসে",
+                basicFeature1: "📱 প্রতি মাসে ৩০০ এসএমএস",
+                basicFeature2: "📊 বেসিক ড্যাশবোর্ড",
+                basicFeature3: "💳 আয়/ব্যয় ট্র্যাকিং",
+                basicFeature4: "📧 ইমেইল সাপোর্ট",
+                basicBtn: "বেসিক নির্বাচন করুন",
+                standardTitle: "স্ট্যান্ডার্ড",
+                standardPeriod: "প্রতি মাসে",
+                standardFeature1: "📱 প্রতি মাসে ৪০০ এসএমএস",
+                standardFeature2: "📈 এডভান্সড ড্যাশবোর্ড",
+                standardFeature3: "📈 বিনিয়োগ ট্র্যাকিং",
+                standardFeature4: "⚡ অগ্রাধিকার সাপোর্ট",
+                standardBtn: "স্ট্যান্ডার্ড নির্বাচন করুন",
+                premiumTitle: "প্রিমিয়াম",
+                premiumPeriod: "প্রতি মাসে",
+                premiumFeature1: "📱 প্রতি মাসে ৫০০ এসএমএস",
+                premiumFeature2: "🎯 সম্পূর্ণ ফিচার এক্সেস",
+                premiumFeature3: "📑 চুক্তি ব্যবস্থাপনা",
+                premiumFeature4: "🕒 ২৪/৭ সাপোর্ট",
+                premiumBtn: "প্রিমিয়াম নির্বাচন করুন",
+                popularBadge: "সবচেয়ে জনপ্রিয়",
+                bestForStarters: "শুরুকারীদের জন্য সেরা",
+                ultimateFeatures: "সর্বোচ্চ ফিচারসমূহ",
+                summaryTitle: "শুরু করতে প্রস্তুত?",
+                summaryText: "সমস্ত প্ল্যানে আমাদের মূল বৈশিষ্ট্যগুলি বিভিন্ন এসএমএস সীমা সহ অন্তর্ভুক্ত রয়েছে। বেসিক দিয়ে শুরু করুন এবং যেকোনো সময় আপগ্রেড করুন। সমস্ত প্ল্যানে ৩০-দিনের টাকা ফেরত গ্যারান্টি।",
+                createAccountBtn: "📝 অ্যাকাউন্ট তৈরি করুন",
+                loginBtn: "🔐 লগইন করুন",
+                paymentBkash: "বিকাশ",
+                paymentNagad: "নগদ",
+                paymentRocket: "রকেট",
+                paymentPathao: "পাঠাও পে",
+                paymentCard: "ভিসা/মাস্টারকার্ড",
+                paymentBank: "ব্যাংক ট্রান্সফার",
+                paymentUpay: "ইউপে",
+                paymentAmarPay: "আমারপে",
+                paymentNote: "সমস্ত প্রধান বাংলাদেশী পেমেন্ট মাধ্যম সমর্থিত",
+                darkMode: "ডার্ক মোড সক্রিয় করা হয়েছে",
+                lightMode: "লাইট মোড সক্রিয় করা হয়েছে",
+                englishSelected: "English language selected",
+                banglaSelected: "বাংলা ভাষা নির্বাচন করা হয়েছে",
+                planSelected: "প্ল্যান নির্বাচন করা হয়েছে: ",
+                // FAQ translations (BN)
+                faqTitle: "প্রায়শই জিজ্ঞাসিত প্রশ্নাবলি",
+                faq1Q: "আপনি কোন পেমেন্ট মাধ্যমগুলো গ্রহণ করেন?",
+                faq1A: "আমরা বিকাশ, নগদ, রকেট, ভিসা/মাস্টারকার্ড এবং ব্যাংক ট্রান্সফার সহ সব প্রধান বাংলাদেশী পেমেন্ট মাধ্যম গ্রহণ করি।",
+                faq2Q: "আমি কি পরে আমার প্ল্যান পরিবর্তন করতে পারি?",
+                faq2A: "হ্যাঁ, আপনি যে কোনও সময় আপনার প্ল্যান আপগ্রেড বা ডাউনগ্রেড করতে পারেন। পরিবর্তনগুলি আপনার পরবর্তী বিলিং চক্রে প্রতিফলিত হবে।",
+                faq3Q: "কি কি-সাথে ফ্রি ট্রায়াল আছে?",
+                faq3A: "নতুন ব্যবহারকারীদের জন্য আমরা ১৪ দিনের ফ্রি ট্রায়াল অফার করি। ট্রায়াল শুরু করতে কোনো ক্রেডিট কার্ড প্রয়োজন নেই।",
+                faq4Q: "আমার আর্থিক ডেটা কতটা নিরাপদ?",
+                faq4A: "আমরা আপনার ডেটা রক্ষার জন্য ব্যাঙ্ক-স্তরের এনক্রিপশন এবং সুরক্ষা ব্যবস্থা ব্যবহার করি। আপনার আর্থিক তথ্য পুরোপুরি নিরাপদ।"
+            }
+        };
+
+        // Create accounting animation elements - ADDED FROM LOGIN PAGE
+        function createAccountingAnimation() {
+            const animationContainer = document.getElementById('accountingAnimation');
+            const symbols = ['৳', '₹', '$', '€', '£', '¥', '৳', '৳', '৳'];
+            const icons = ['🧮', '📊', '📈', '💰', '💳', '💵', '💸'];
+            
+            // Create currency symbols
+            symbols.forEach((symbol, index) => {
+                const element = document.createElement('div');
+                element.className = `currency-symbol ${symbol === '৳' ? 'taka' : ''}`;
+                element.textContent = symbol;
+                element.style.left = `${Math.random() * 100}%`;
+                element.style.animationDelay = `${Math.random() * 15}s`;
+                element.style.fontSize = `${20 + Math.random() * 20}px`;
+                animationContainer.appendChild(element);
+            });
+            
+            // Create calculator icons
+            for (let i = 0; i < 5; i++) {
+                const element = document.createElement('div');
+                element.className = 'calculator-icon';
+                element.textContent = '🧮';
+                element.style.left = `${Math.random() * 100}%`;
+                element.style.animationDelay = `${Math.random() * 20}s`;
+                animationContainer.appendChild(element);
+            }
+            
+            // Create chart icons
+            for (let i = 0; i < 4; i++) {
+                const element = document.createElement('div');
+                element.className = 'chart-icon';
+                element.textContent = '📊';
+                element.style.left = `${Math.random() * 100}%`;
+                element.style.animationDelay = `${Math.random() * 25}s`;
+                animationContainer.appendChild(element);
+            }
+        }
+
+        // Create confetti animation
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confettiContainer');
+            confettiContainer.innerHTML = '';
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                // Random properties
+                const left = Math.random() * 100;
+                const animationDelay = Math.random() * 2;
+                const size = Math.random() * 10 + 5;
+                const colors = ['#C4B5FD', '#A78BFA', '#7C3AED', '#6D28D9', '#8B5CF6'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                confetti.style.left = `${left}%`;
+                confetti.style.animationDelay = `${animationDelay}s`;
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                confetti.style.background = color;
+                
+                confettiContainer.appendChild(confetti);
+            }
+            
+            // Remove confetti after animation
+            setTimeout(() => {
+                confettiContainer.innerHTML = '';
+            }, 3000);
+        }
+
+        // Update page content based on language
+        function updateLanguage(lang) {
+            const t = translations[lang];
+            
+            // Update navigation
+            document.querySelector('a[href="index.html"]').textContent = lang === 'en' ? "Home" : "হোম";
+            document.querySelector('a[href="features.html"]').textContent = lang === 'en' ? "Features" : "ফিচারসমূহ";
+            document.querySelector('a[href="pricing.html"]').textContent = lang === 'en' ? "Pricing" : "মূল্য";
+            document.querySelector('a[href="contact.html"]').textContent = lang === 'en' ? "Contact" : "যোগাযোগ";
+            
+            // Update page content
+            document.getElementById('pageTitle').textContent = t.pageTitle;
+            document.getElementById('pageSubtitle').textContent = t.pageSubtitle;
+            
+            // Update pricing cards
+            document.getElementById('basicTitle').textContent = t.basicTitle;
+            document.getElementById('basicPeriod').textContent = t.basicPeriod;
+            document.getElementById('basicFeature1').textContent = t.basicFeature1;
+            document.getElementById('basicFeature2').textContent = t.basicFeature2;
+            document.getElementById('basicFeature3').textContent = t.basicFeature3;
+            document.getElementById('basicFeature4').textContent = t.basicFeature4;
+            document.getElementById('basicBtn').textContent = t.basicBtn;
+
+            document.getElementById('standardTitle').textContent = t.standardTitle;
+            document.getElementById('standardPeriod').textContent = t.standardPeriod;
+            document.getElementById('standardFeature1').textContent = t.standardFeature1;
+            document.getElementById('standardFeature2').textContent = t.standardFeature2;
+            document.getElementById('standardFeature3').textContent = t.standardFeature3;
+            document.getElementById('standardFeature4').textContent = t.standardFeature4;
+            document.getElementById('standardBtn').textContent = t.standardBtn;
+
+            document.getElementById('premiumTitle').textContent = t.premiumTitle;
+            document.getElementById('premiumPeriod').textContent = t.premiumPeriod;
+            document.getElementById('premiumFeature1').textContent = t.premiumFeature1;
+            document.getElementById('premiumFeature2').textContent = t.premiumFeature2;
+            document.getElementById('premiumFeature3').textContent = t.premiumFeature3;
+            document.getElementById('premiumFeature4').textContent = t.premiumFeature4;
+            document.getElementById('premiumBtn').textContent = t.premiumBtn;
+
+            document.getElementById('popularBadge').textContent = t.popularBadge;
+            document.getElementById('bestStarterBadge').textContent = t.bestForStarters;
+            document.getElementById('ultimateFeaturesBadge').textContent = t.ultimateFeatures;
+            
+            // Update FAQ
+            document.getElementById('faqTitle').textContent = t.faqTitle;
+            document.getElementById('faq1Q').textContent = t.faq1Q;
+            document.getElementById('faq1A').textContent = t.faq1A;
+            document.getElementById('faq2Q').textContent = t.faq2Q;
+            document.getElementById('faq2A').textContent = t.faq2A;
+            document.getElementById('faq3Q').textContent = t.faq3Q;
+            document.getElementById('faq3A').textContent = t.faq3A;
+            document.getElementById('faq4Q').textContent = t.faq4Q;
+            document.getElementById('faq4A').textContent = t.faq4A;
+            
+            // Update summary section
+            document.getElementById('summaryTitle').textContent = t.summaryTitle;
+            document.getElementById('summaryText').textContent = t.summaryText;
+            document.getElementById('createAccountBtn').innerHTML = t.createAccountBtn;
+            document.getElementById('loginBtn').innerHTML = t.loginBtn;
+            
+            // Update payment footer content
+            document.getElementById('paymentBkash').textContent = t.paymentBkash;
+            document.getElementById('paymentNagad').textContent = t.paymentNagad;
+            document.getElementById('paymentRocket').textContent = t.paymentRocket;
+            document.getElementById('paymentPathao').textContent = t.paymentPathao;
+            document.getElementById('paymentCard').textContent = t.paymentCard;
+            document.getElementById('paymentBank').textContent = t.paymentBank;
+            document.getElementById('paymentUpay').textContent = t.paymentUpay;
+            document.getElementById('paymentAmarPay').textContent = t.paymentAmarPay;
+            document.getElementById('paymentNote').textContent = t.paymentNote;
+            
+            // Update duplicates
+            document.getElementById('paymentBkash2').textContent = t.paymentBkash;
+            document.getElementById('paymentNagad2').textContent = t.paymentNagad;
+            document.getElementById('paymentRocket2').textContent = t.paymentRocket;
+            document.getElementById('paymentPathao2').textContent = t.paymentPathao;
+            
+            // Update page title
+            document.title = t.pageTitle;
+        }
+
+        // Show message function
+        function showMessage(text, type) {
+            // Create temporary message element
+            const message = document.createElement('div');
+            message.textContent = text;
+            message.className = 'message ' + type;
+            message.style.display = 'block';
+            
+            document.body.appendChild(message);
+            
+            setTimeout(() => {
+                message.remove();
+            }, 4000);
+        }
+
+        // Show loading function
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('active');
+        }
+
+        // Hide loading function
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('active');
+        }
+
+        // Select Plan
+        function selectPlan(plan) {
+            const planName = isEnglish ? 
+                (plan === 'basic' ? 'Basic' : plan === 'standard' ? 'Standard' : 'Premium') :
+                (plan === 'basic' ? 'বেসিক' : plan === 'standard' ? 'স্ট্যান্ডার্ড' : 'প্রিমিয়াম');
+            
+            const message = isEnglish ? 
+                `${translations.en.planSelected}${planName}` : 
+                `${translations.bn.planSelected}${planName}`;
+                
+            showMessage(message, 'success');
+            createConfetti();
+            
+            // Save selected plan
+            localStorage.setItem('selectedPlan', plan);
+            
+            // Show loading and redirect to signup
+            showLoading();
+            setTimeout(() => {
+                window.location.href = 'signup.html';
+            }, 1500);
+        }
+
+        // Update Toggle Visual State
+        function updateDarkModeToggle(isDark) {
+            const thumbs = document.querySelectorAll('#darkModeToggle .toggle-thumb');
+            thumbs[0].classList.toggle('active', !isDark);
+            thumbs[1].classList.toggle('active', isDark);
+        }
+
+        function updateLanguageToggle(isEnglish) {
+            const thumbs = document.querySelectorAll('#languageToggle .toggle-thumb');
+            thumbs[0].classList.toggle('active', isEnglish);
+            thumbs[1].classList.toggle('active', !isEnglish);
+        }
+
+        // Scroll Animation for Mobile
+        function animateOnScroll() {
+            const pricingCards = document.querySelectorAll('.pricing-card');
+            
+            pricingCards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (cardTop < windowHeight - 100) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Show/hide back to top button
+        function toggleBackToTop() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        }
+
+        // FAQ Accordion
+        function initFAQ() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+        }
+
+        // Navigation Links - কোন loader নেই
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // কোন loader নেই, সরাসরি redirect
+                window.location.href = this.getAttribute('href');
+            });
+        });
+
+        // CTA buttons - সরাসরি redirect, কোন loader নেই
+        document.querySelectorAll('.btn').forEach(btn => {
+            if (btn.getAttribute('href')) {
+                btn.addEventListener('click', function(e) {
+                    window.location.href = this.getAttribute('href');
+                });
+            }
+        });
+
+        // Dark Mode Toggle
+        document.getElementById('darkModeToggle').addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const isRightClick = clickX > rect.width / 2;
+            
+            if (isRightClick) {
+                // Dark Mode
+                isDarkMode = true;
+                document.documentElement.setAttribute('data-theme', 'dark');
+                updateDarkModeToggle(true);
+                const message = isEnglish ? translations.en.darkMode : translations.bn.darkMode;
+                showMessage(message, 'success');
+                localStorage.setItem('darkMode', 'true');
+            } else {
+                // Light Mode
+                isDarkMode = false;
+                document.documentElement.removeAttribute('data-theme');
+                updateDarkModeToggle(false);
+                const message = isEnglish ? translations.en.lightMode : translations.bn.lightMode;
+                showMessage(message, 'success');
+                localStorage.setItem('darkMode', 'false');
+            }
+        });
+
+        // Language Toggle
+        document.getElementById('languageToggle').addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const isRightClick = clickX > rect.width / 2;
+            
+            if (isRightClick) {
+                // Bangla
+                isEnglish = false;
+                updateLanguage('bn');
+                updateLanguageToggle(false);
+                showMessage(translations.bn.banglaSelected, 'success');
+                localStorage.setItem('language', 'bn');
+            } else {
+                // English
+                isEnglish = true;
+                updateLanguage('en');
+                updateLanguageToggle(true);
+                showMessage(translations.en.englishSelected, 'success');
+                localStorage.setItem('language', 'en');
+            }
+        });
+
+        // Back to Top Button
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Page loaded successfully
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create accounting animation - ADDED FROM LOGIN PAGE
+            createAccountingAnimation();
+            
+            // Load dark mode preference
+            const savedDarkMode = localStorage.getItem('darkMode');
+            if (savedDarkMode === 'true') {
+                isDarkMode = true;
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+            updateDarkModeToggle(isDarkMode);
+            
+            // Load language preference
+            const savedLanguage = localStorage.getItem('language');
+            if (savedLanguage === 'bn') {
+                isEnglish = false;
+                updateLanguage('bn');
+            } else {
+                isEnglish = true;
+                updateLanguage('en');
+            }
+            updateLanguageToggle(isEnglish);
+
+            // Initialize FAQ
+            initFAQ();
+            
+            // Initial animation for pricing cards
+            setTimeout(() => {
+                animateOnScroll();
+            }, 300);
+
+            // Add event listeners
+            window.addEventListener('scroll', () => {
+                animateOnScroll();
+                toggleBackToTop();
+            });
+
+            console.log('🎉 PocketHisab Pricing Page Loaded!');
+
+            const welcomeText = isEnglish ? 'Choose the perfect plan for your needs!' : 'আপনার চাহিদার জন্য নিখুঁত প্ল্যান নির্বাচন করুন!';
+            showMessage(welcomeText, 'info');
+        });
+
+        // Add keyboard shortcut for dark mode (Ctrl+D)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'd') {
+                e.preventDefault();
+                isDarkMode = !isDarkMode;
+                if (isDarkMode) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    updateDarkModeToggle(true);
+                    const message = isEnglish ? translations.en.darkMode : translations.bn.darkMode;
+                    showMessage(message, 'success');
+                    localStorage.setItem('darkMode', 'true');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    updateDarkModeToggle(false);
+                    const message = isEnglish ? translations.en.lightMode : translations.bn.lightMode;
+                    showMessage(message, 'success');
+                    localStorage.setItem('darkMode', 'false');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
